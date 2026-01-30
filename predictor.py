@@ -151,6 +151,10 @@ def add_historical_features(prediction_data: pd.DataFrame,
     """
     Add historical performance features to prediction data.
     
+    Handles new teams (like Cadillac) by:
+    1. Using driver's personal history (even from other teams)
+    2. Applying baseline defaults for new team metrics
+    
     Args:
         prediction_data: Current race data
         historical_data: Historical race results
@@ -163,36 +167,51 @@ def add_historical_features(prediction_data: pd.DataFrame,
     
     event_name = prediction_data['EventName'].iloc[0] if 'EventName' in prediction_data.columns else None
     
+    # Get new team defaults from config
+    new_team_defaults = getattr(config, 'NEW_TEAM_DEFAULTS', {})
+    
     for idx, row in prediction_data.iterrows():
         driver = row['Driver']
+        team = row['Team']
+        
+        # Get driver history (regardless of team - captures moved drivers like Perez, Bottas)
         driver_history = historical_data[historical_data['Driver'] == driver]
         
-        if driver_history.empty:
-            continue
+        if not driver_history.empty:
+            # Recent form (last 5 races) - uses driver's personal history
+            recent = driver_history.tail(config.RECENT_RACES_WINDOW)
+            prediction_data.loc[idx, 'RecentAvgPosition'] = recent['Position'].mean()
+            prediction_data.loc[idx, 'RecentAvgPoints'] = recent['Points'].mean()
+            prediction_data.loc[idx, 'RecentWinRate'] = recent['IsWinner'].mean()
+            prediction_data.loc[idx, 'RecentPodiumRate'] = (recent['Position'] <= 3).mean()
+            
+            # Track-specific history (driver's personal track record)
+            if event_name:
+                track_history = driver_history[driver_history['EventName'] == event_name]
+                if not track_history.empty:
+                    prediction_data.loc[idx, 'TrackAvgPosition'] = track_history['Position'].mean()
+                    prediction_data.loc[idx, 'TrackBestPosition'] = track_history['Position'].min()
+                    prediction_data.loc[idx, 'TrackWinRate'] = track_history['IsWinner'].mean()
+                    prediction_data.loc[idx, 'TrackRaceCount'] = len(track_history)
         
-        # Recent form (last 5 races)
-        recent = driver_history.tail(config.RECENT_RACES_WINDOW)
-        prediction_data.loc[idx, 'RecentAvgPosition'] = recent['Position'].mean()
-        prediction_data.loc[idx, 'RecentAvgPoints'] = recent['Points'].mean()
-        prediction_data.loc[idx, 'RecentWinRate'] = recent['IsWinner'].mean()
-        prediction_data.loc[idx, 'RecentPodiumRate'] = (recent['Position'] <= 3).mean()
-        
-        # Track-specific history
-        if event_name:
-            track_history = driver_history[driver_history['EventName'] == event_name]
-            if not track_history.empty:
-                prediction_data.loc[idx, 'TrackAvgPosition'] = track_history['Position'].mean()
-                prediction_data.loc[idx, 'TrackBestPosition'] = track_history['Position'].min()
-                prediction_data.loc[idx, 'TrackWinRate'] = track_history['IsWinner'].mean()
-                prediction_data.loc[idx, 'TrackRaceCount'] = len(track_history)
-        
-        # Team stats
-        team = row['Team']
+        # Team stats - handle new teams differently
         team_history = historical_data[historical_data['Team'] == team]
+        
         if not team_history.empty:
+            # Existing team - use their history
             recent_team = team_history.tail(config.RECENT_RACES_WINDOW * 2)  # 2 drivers
             prediction_data.loc[idx, 'TeamAvgPosition'] = recent_team['Position'].mean()
             prediction_data.loc[idx, 'TeamSeasonWins'] = recent_team['IsWinner'].sum()
+        elif team in new_team_defaults:
+            # New team (like Cadillac) - use configured defaults
+            defaults = new_team_defaults[team]
+            prediction_data.loc[idx, 'TeamAvgPosition'] = defaults.get('baseline_constructor_position', 10) * 2
+            prediction_data.loc[idx, 'TeamSeasonWins'] = 0
+            prediction_data.loc[idx, 'TeamReliabilityFactor'] = defaults.get('reliability_factor', 0.85)
+        else:
+            # Unknown new team - conservative defaults
+            prediction_data.loc[idx, 'TeamAvgPosition'] = 15  # Mid-back of grid
+            prediction_data.loc[idx, 'TeamSeasonWins'] = 0
     
     return prediction_data
 

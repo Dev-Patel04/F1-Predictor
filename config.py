@@ -51,3 +51,34 @@ XGB_PARAMS = {
 # Feature engineering settings
 RECENT_RACES_WINDOW = 5  # Number of recent races to consider for form
 HISTORICAL_WEIGHT_DECAY = 0.9  # Decay factor for older race results
+
+# 2025 F1 Teams and Drivers
+TEAMS_2025 = {
+    "Red Bull Racing": ["Max Verstappen", "Liam Lawson"],
+    "Ferrari": ["Charles Leclerc", "Lewis Hamilton"],
+    "McLaren": ["Lando Norris", "Oscar Piastri"],
+    "Mercedes": ["George Russell", "Andrea Kimi Antonelli"],
+    "Aston Martin": ["Fernando Alonso", "Lance Stroll"],
+    "Alpine": ["Pierre Gasly", "Jack Doohan"],
+    "Williams": ["Alex Albon", "Carlos Sainz"],
+    "RB": ["Yuki Tsunoda", "Isack Hadjar"],
+    "Kick Sauber": ["Nico Hulkenberg", "Gabriel Bortoleto"],
+    "Haas F1 Team": ["Esteban Ocon", "Oliver Bearman"],
+    "Cadillac": ["Sergio Perez", "Valtteri Bottas"],  # New 2025 team
+}
+
+# Driver to team mapping for quick lookup
+DRIVER_TEAM_MAP_2025 = {
+    driver: team 
+    for team, drivers in TEAMS_2025.items() 
+    for driver in drivers
+}
+
+# New team baseline settings (for teams without historical data)
+NEW_TEAM_DEFAULTS = {
+    "Cadillac": {
+        "baseline_constructor_position": 10,  # Conservative estimate for new team
+        "reliability_factor": 0.85,  # Slightly lower reliability expected
+        "development_rate": 1.0,  # Neutral development assumption
+    }
+}
