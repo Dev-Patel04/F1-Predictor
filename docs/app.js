@@ -3,20 +3,20 @@
 // 2026 Season - Next Race Prediction
 const nextRace = {
     round: 1,
-    name: "Bahrain Grand Prix",
-    date: "March 2, 2026",
-    circuit: "Bahrain International Circuit",
+    name: "Australian Grand Prix",
+    date: "March 8, 2026",
+    circuit: "Albert Park Circuit, Melbourne",
     predictions: [
-        { pos: 1, driver: "VER", fullName: "Max Verstappen", team: "Red Bull Racing", prob: 38.5 },
-        { pos: 2, driver: "NOR", fullName: "Lando Norris", team: "McLaren", prob: 22.3 },
-        { pos: 3, driver: "LEC", fullName: "Charles Leclerc", team: "Ferrari", prob: 14.8 },
-        { pos: 4, driver: "HAM", fullName: "Lewis Hamilton", team: "Ferrari", prob: 9.2 },
-        { pos: 5, driver: "PIA", fullName: "Oscar Piastri", team: "McLaren", prob: 6.4 },
-        { pos: 6, driver: "SAI", fullName: "Carlos Sainz", team: "Williams", prob: 3.8 },
-        { pos: 7, driver: "RUS", fullName: "George Russell", team: "Mercedes", prob: 2.5 },
-        { pos: 8, driver: "PER", fullName: "Sergio Perez", team: "Red Bull Racing", prob: 1.4 },
-        { pos: 9, driver: "ALO", fullName: "Fernando Alonso", team: "Aston Martin", prob: 0.7 },
-        { pos: 10, driver: "STR", fullName: "Lance Stroll", team: "Aston Martin", prob: 0.4 }
+        { pos: 1, driver: "VER", fullName: "Max Verstappen", team: "Red Bull Racing", prob: 35.2 },
+        { pos: 2, driver: "NOR", fullName: "Lando Norris", team: "McLaren", prob: 24.8 },
+        { pos: 3, driver: "LEC", fullName: "Charles Leclerc", team: "Ferrari", prob: 15.3 },
+        { pos: 4, driver: "HAM", fullName: "Lewis Hamilton", team: "Ferrari", prob: 10.1 },
+        { pos: 5, driver: "PIA", fullName: "Oscar Piastri", team: "McLaren", prob: 7.2 },
+        { pos: 6, driver: "RUS", fullName: "George Russell", team: "Mercedes", prob: 3.5 },
+        { pos: 7, driver: "SAI", fullName: "Carlos Sainz", team: "Williams", prob: 1.8 },
+        { pos: 8, driver: "ALO", fullName: "Fernando Alonso", team: "Aston Martin", prob: 1.2 },
+        { pos: 9, driver: "ANT", fullName: "Kimi Antonelli", team: "Mercedes", prob: 0.5 },
+        { pos: 10, driver: "LAW", fullName: "Liam Lawson", team: "Red Bull Racing", prob: 0.4 }
     ]
 };
 
