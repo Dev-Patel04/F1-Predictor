@@ -306,8 +306,8 @@ def collect_historical_data(seasons: List[int] = None) -> pd.DataFrame:
     combined = pd.concat(all_data, ignore_index=True)
     
     # Save to cache
-    cache_path = config.DATA_DIR / "historical_data.parquet"
-    combined.to_parquet(cache_path, index=False)
+    cache_path = config.DATA_DIR / "historical_data.csv"
+    combined.to_csv(cache_path, index=False)
     print(f"\nSaved {len(combined)} rows to {cache_path}")
     
     return combined
@@ -315,10 +315,10 @@ def collect_historical_data(seasons: List[int] = None) -> pd.DataFrame:
 
 def load_cached_data() -> Optional[pd.DataFrame]:
     """Load previously cached historical data."""
-    cache_path = config.DATA_DIR / "historical_data.parquet"
+    cache_path = config.DATA_DIR / "historical_data.csv"
     
     if cache_path.exists():
-        return pd.read_parquet(cache_path)
+        return pd.read_csv(cache_path)
     
     return None
 
