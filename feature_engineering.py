@@ -169,11 +169,11 @@ def calculate_weather_features(df: pd.DataFrame) -> pd.DataFrame:
     df = df.copy()
     
     if 'Rainfall' in df.columns:
-        df['IsWetRace'] = df['Rainfall'].astype(int)
+        df['IsWetRace'] = df['Rainfall'].fillna(False).astype(int)
     
     if 'TrackTemp' in df.columns:
         df['TempCategory'] = pd.cut(
-            df['TrackTemp'],
+            df['TrackTemp'].fillna(30),  # Default to mild temp
             bins=[0, 25, 40, 100],
             labels=['cold', 'mild', 'hot']
         )
@@ -181,7 +181,7 @@ def calculate_weather_features(df: pd.DataFrame) -> pd.DataFrame:
         df = pd.get_dummies(df, columns=['TempCategory'], prefix='Temp')
     
     if 'WindSpeed' in df.columns:
-        df['HighWinds'] = (df['WindSpeed'] > 5).astype(int)  # Threshold: 5 m/s
+        df['HighWinds'] = (df['WindSpeed'].fillna(0) > 5).astype(int)  # Threshold: 5 m/s
     
     return df
 
