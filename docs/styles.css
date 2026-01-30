@@ -691,3 +691,147 @@ footer a:hover {
         gap: 1rem;
     }
 }
+
+/* ============================================
+   Prediction Card Reasoning Panel
+   ============================================ */
+
+.prediction-card {
+    display: flex;
+    flex-direction: column;
+    cursor: pointer;
+}
+
+.card-main {
+    display: grid;
+    grid-template-columns: 60px 1fr 200px auto;
+    align-items: center;
+    padding: 1.25rem 1.5rem;
+    gap: 1rem;
+    border-radius: 12px;
+    transition: all 0.3s ease;
+}
+
+.prediction-card:hover .card-main {
+    background: var(--bg-card-hover);
+}
+
+.expand-icon {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    transition: all 0.3s ease;
+    padding: 0.5rem;
+}
+
+.expand-icon.expanded {
+    color: var(--accent-primary);
+}
+
+.reasoning-panel {
+    background: rgba(255, 255, 255, 0.03);
+    border-top: 1px solid var(--border-color);
+    padding: 1.5rem;
+    animation: slideDown 0.3s ease;
+}
+
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.reasoning-header {
+    margin-bottom: 0.75rem;
+}
+
+.reasoning-title {
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--accent-primary);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+}
+
+.reasoning-summary {
+    font-size: 1rem;
+    color: var(--text-primary);
+    margin-bottom: 1rem;
+    font-weight: 500;
+}
+
+.factors-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 0.75rem;
+}
+
+.factor-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.6rem 0.8rem;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 8px;
+    border-left: 3px solid var(--text-muted);
+}
+
+.factor-item.impact-high {
+    border-left-color: #22c55e;
+    background: rgba(34, 197, 94, 0.1);
+}
+
+.factor-item.impact-medium {
+    border-left-color: #f59e0b;
+    background: rgba(245, 158, 11, 0.1);
+}
+
+.factor-item.impact-low {
+    border-left-color: var(--text-muted);
+}
+
+.factor-label {
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+}
+
+.factor-value {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+.prediction-card.expanded {
+    border-color: var(--accent-primary);
+    box-shadow: 0 4px 20px rgba(225, 6, 0, 0.15);
+}
+
+/* Responsive reasoning panel */
+@media (max-width: 900px) {
+    .card-main {
+        grid-template-columns: 50px 1fr auto;
+    }
+
+    .probability {
+        display: none;
+    }
+
+    .factors-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 600px) {
+    .reasoning-panel {
+        padding: 1rem;
+    }
+
+    .factor-item {
+        padding: 0.5rem 0.6rem;
+    }
+}
