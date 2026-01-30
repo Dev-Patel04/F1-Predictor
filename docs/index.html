@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,16 +9,18 @@
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
 </head>
+
 <body>
     <div class="background-glow"></div>
-    
+
     <header>
         <div class="logo">
             <span class="logo-icon">🏎️</span>
             <span class="logo-text">F1 Predictor</span>
         </div>
         <nav>
-            <a href="#predictions" class="nav-link active">Predictions</a>
+            <a href="#predictions" class="nav-link active">2026 Prediction</a>
+            <a href="#history" class="nav-link">Past Winners</a>
             <a href="#stats" class="nav-link">Model Stats</a>
             <a href="#about" class="nav-link">About</a>
         </nav>
@@ -26,142 +29,60 @@
     <main>
         <section class="hero">
             <h1>Race Winner <span class="gradient-text">Predictions</span></h1>
-            <p class="subtitle">ML-powered predictions using historical F1 data</p>
+            <p class="subtitle">ML-powered predictions using historical F1 data from 2022-2025</p>
         </section>
 
+        <!-- 2026 PREDICTION SECTION -->
         <section id="predictions" class="predictions-section">
+            <div class="section-header">
+                <span class="section-tag">2026 SEASON</span>
+                <h2>Next Race Prediction</h2>
+            </div>
+
             <div class="race-header">
                 <div class="race-info">
                     <span class="race-round">ROUND 1</span>
-                    <h2 class="race-name">Bahrain Grand Prix</h2>
-                    <p class="race-date">March 2, 2025</p>
+                    <h3 class="race-name">Bahrain Grand Prix</h3>
+                    <p class="race-date">March 2, 2026 • Bahrain International Circuit</p>
                 </div>
-                <div class="race-selector">
-                    <select id="race-select">
-                        <option value="bahrain">Bahrain GP</option>
-                        <option value="saudi">Saudi Arabian GP</option>
-                        <option value="australia">Australian GP</option>
-                    </select>
+                <div class="countdown">
+                    <span class="countdown-label">Predictions based on</span>
+                    <span class="countdown-value">2022-2025 data</span>
                 </div>
             </div>
 
             <div class="predictions-grid">
-                <div class="prediction-card podium gold">
-                    <div class="position">1</div>
-                    <div class="driver-info">
-                        <span class="driver-name">VER</span>
-                        <span class="team">Red Bull Racing</span>
-                    </div>
-                    <div class="probability">
-                        <span class="prob-value">42.3%</span>
-                        <div class="prob-bar">
-                            <div class="prob-fill" style="width: 42.3%"></div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="prediction-card podium silver">
-                    <div class="position">2</div>
-                    <div class="driver-info">
-                        <span class="driver-name">NOR</span>
-                        <span class="team">McLaren</span>
-                    </div>
-                    <div class="probability">
-                        <span class="prob-value">18.7%</span>
-                        <div class="prob-bar">
-                            <div class="prob-fill" style="width: 18.7%"></div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="prediction-card podium bronze">
-                    <div class="position">3</div>
-                    <div class="driver-info">
-                        <span class="driver-name">LEC</span>
-                        <span class="team">Ferrari</span>
-                    </div>
-                    <div class="probability">
-                        <span class="prob-value">12.4%</span>
-                        <div class="prob-bar">
-                            <div class="prob-fill" style="width: 12.4%"></div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="prediction-card">
-                    <div class="position">4</div>
-                    <div class="driver-info">
-                        <span class="driver-name">SAI</span>
-                        <span class="team">Ferrari</span>
-                    </div>
-                    <div class="probability">
-                        <span class="prob-value">8.2%</span>
-                        <div class="prob-bar">
-                            <div class="prob-fill" style="width: 8.2%"></div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="prediction-card">
-                    <div class="position">5</div>
-                    <div class="driver-info">
-                        <span class="driver-name">PIA</span>
-                        <span class="team">McLaren</span>
-                    </div>
-                    <div class="probability">
-                        <span class="prob-value">6.1%</span>
-                        <div class="prob-bar">
-                            <div class="prob-fill" style="width: 6.1%"></div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="prediction-card">
-                    <div class="position">6</div>
-                    <div class="driver-info">
-                        <span class="driver-name">HAM</span>
-                        <span class="team">Ferrari</span>
-                    </div>
-                    <div class="probability">
-                        <span class="prob-value">4.8%</span>
-                        <div class="prob-bar">
-                            <div class="prob-fill" style="width: 4.8%"></div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="prediction-card">
-                    <div class="position">7</div>
-                    <div class="driver-info">
-                        <span class="driver-name">RUS</span>
-                        <span class="team">Mercedes</span>
-                    </div>
-                    <div class="probability">
-                        <span class="prob-value">3.2%</span>
-                        <div class="prob-bar">
-                            <div class="prob-fill" style="width: 3.2%"></div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="prediction-card">
-                    <div class="position">8</div>
-                    <div class="driver-info">
-                        <span class="driver-name">PER</span>
-                        <span class="team">Red Bull Racing</span>
-                    </div>
-                    <div class="probability">
-                        <span class="prob-value">2.1%</span>
-                        <div class="prob-bar">
-                            <div class="prob-fill" style="width: 2.1%"></div>
-                        </div>
-                    </div>
-                </div>
+                <!-- Populated by JavaScript -->
             </div>
         </section>
 
+        <!-- HISTORICAL WINNERS SECTION -->
+        <section id="history" class="history-section">
+            <div class="section-header">
+                <span class="section-tag">HISTORICAL DATA</span>
+                <h2>Race Winners 2022-2025</h2>
+                <p class="section-desc">Complete race winners for all Grand Prix events since 2022</p>
+            </div>
+
+            <div class="history-legend">
+                <span class="legend-item"><span class="legend-color" style="background: #3671C6"></span> Red Bull</span>
+                <span class="legend-item"><span class="legend-color" style="background: #E8002D"></span> Ferrari</span>
+                <span class="legend-item"><span class="legend-color" style="background: #FF8000"></span> McLaren</span>
+                <span class="legend-item"><span class="legend-color" style="background: #27F4D2"></span> Mercedes</span>
+            </div>
+
+            <div class="history-grid">
+                <!-- Populated by JavaScript -->
+            </div>
+        </section>
+
+        <!-- MODEL STATS SECTION -->
         <section id="stats" class="stats-section">
-            <h2>Model Performance</h2>
+            <div class="section-header">
+                <span class="section-tag">PERFORMANCE</span>
+                <h2>Model Statistics</h2>
+            </div>
+
             <div class="stats-grid">
                 <div class="stat-card">
                     <div class="stat-value">98.2%</div>
@@ -174,14 +95,14 @@
                     <div class="stat-desc">Winner in top 3 predictions</div>
                 </div>
                 <div class="stat-card">
-                    <div class="stat-value">440</div>
-                    <div class="stat-label">Races Analyzed</div>
-                    <div class="stat-desc">From 2023-2024 seasons</div>
+                    <div class="stat-value">4</div>
+                    <div class="stat-label">Seasons</div>
+                    <div class="stat-desc">2022-2025 training data</div>
                 </div>
                 <div class="stat-card">
-                    <div class="stat-value">15+</div>
-                    <div class="stat-label">Features</div>
-                    <div class="stat-desc">Qualifying, form, weather</div>
+                    <div class="stat-value">85+</div>
+                    <div class="stat-label">Races</div>
+                    <div class="stat-desc">Historical races analyzed</div>
                 </div>
             </div>
 
@@ -227,33 +148,40 @@
             </div>
         </section>
 
+        <!-- ABOUT SECTION -->
         <section id="about" class="about-section">
-            <h2>How It Works</h2>
+            <div class="section-header">
+                <span class="section-tag">TECHNOLOGY</span>
+                <h2>How It Works</h2>
+            </div>
+
             <div class="about-grid">
                 <div class="about-card">
                     <div class="about-icon">📊</div>
                     <h3>Data Collection</h3>
-                    <p>Fetches race results, qualifying, and weather data using FastF1 API</p>
+                    <p>Fetches race results, qualifying, and weather data from 2022-2025 using FastF1 API</p>
                 </div>
                 <div class="about-card">
                     <div class="about-icon">⚙️</div>
                     <h3>Feature Engineering</h3>
-                    <p>Calculates driver form, team strength, and historical track performance</p>
+                    <p>Calculates driver form, team strength, and historical track performance metrics</p>
                 </div>
                 <div class="about-card">
                     <div class="about-icon">🤖</div>
                     <h3>ML Prediction</h3>
-                    <p>Random Forest classifier trained on 2+ seasons of F1 data</p>
+                    <p>Random Forest classifier trained on 4 seasons of F1 data to predict race winners</p>
                 </div>
             </div>
         </section>
     </main>
 
     <footer>
-        <p>Built with <a href="https://github.com/theOehrly/Fast-F1" target="_blank">FastF1</a> • 
-           <a href="https://github.com/Dev-Patel04/F1-Predictor" target="_blank">View on GitHub</a></p>
+        <p>Built with <a href="https://github.com/theOehrly/Fast-F1" target="_blank">FastF1</a> •
+            <a href="https://github.com/Dev-Patel04/F1-Predictor" target="_blank">View on GitHub</a>
+        </p>
     </footer>
 
     <script src="app.js"></script>
 </body>
+
 </html>
